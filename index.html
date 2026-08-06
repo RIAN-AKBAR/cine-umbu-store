@@ -82,86 +82,46 @@
             border-radius: 10px;
         }
 
-        /* ========== TUTORIAL STEPS ========== */
-        .tutorial-steps {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin: 20px 0 18px;
+        /* ========== STEP INDICATOR ========== */
+        .step-indicator {
+            text-align: center;
+            margin: 18px 0 16px;
             position: relative;
             z-index: 1;
         }
 
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 8px 16px 8px 12px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .step-item.active {
+        .step-indicator .step-badge {
+            display: inline-block;
             background: rgba(108, 60, 224, 0.15);
-            border-color: rgba(108, 60, 224, 0.3);
-            box-shadow: 0 0 30px rgba(108, 60, 224, 0.05);
+            color: #a855f7;
+            padding: 4px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(168, 85, 247, 0.15);
         }
 
-        .step-item.done {
-            background: rgba(5, 150, 105, 0.12);
-            border-color: rgba(52, 211, 153, 0.2);
+        .step-indicator .step-badge.done {
+            background: rgba(5, 150, 105, 0.15);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.15);
         }
 
-        .step-number {
-            width: 26px;
-            height: 26px;
+        .step-indicator .step-badge .loader-mini {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(168, 85, 247, 0.2);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.3);
-            flex-shrink: 0;
-            transition: all 0.3s ease;
+            border-top-color: #a855f7;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
         }
 
-        .step-item.active .step-number {
-            background: linear-gradient(135deg, #6c3ce0, #a855f7);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(108, 60, 224, 0.3);
-        }
-
-        .step-item.done .step-number {
-            background: linear-gradient(135deg, #059669, #34d399);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
-        }
-
-        .step-label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-        }
-
-        .step-item.active .step-label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .step-item.done .step-label {
-            color: rgba(52, 211, 153, 0.7);
-        }
-
-        .step-arrow {
-            color: rgba(255, 255, 255, 0.08);
-            font-size: 18px;
-            font-weight: 300;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ========== STATUS PANEL ========== */
@@ -349,6 +309,10 @@
             color: #34d399;
         }
 
+        .log-entry .msg.warning {
+            color: #fbbf24;
+        }
+
         /* ========== TOMBOL VERIFIKASI ========== */
         .btn-verify {
             width: 100%;
@@ -394,10 +358,6 @@
             margin-right: 10px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         .btn-verify.verified {
             background: linear-gradient(135deg, #059669, #10b981);
             box-shadow: 0 8px 30px rgba(5, 150, 105, 0.25);
@@ -407,114 +367,46 @@
             box-shadow: 0 12px 40px rgba(5, 150, 105, 0.35);
         }
 
-        /* ========== PAGE 2: VISIT SITE ========== */
-        #pageVisit {
+        /* ========== REDIRECT NOTICE ========== */
+        .redirect-notice {
+            text-align: center;
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: rgba(52, 211, 153, 0.06);
+            border-radius: 10px;
+            border: 1px solid rgba(52, 211, 153, 0.1);
             display: none;
             position: relative;
             z-index: 1;
         }
 
-        .visit-header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .visit-header .check-icon {
-            font-size: 56px;
+        .redirect-notice.show {
             display: block;
-            margin-bottom: 6px;
-            animation: popIn 0.5s ease;
+            animation: fadeSlide 0.5s ease;
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            70% { transform: scale(1.15); }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        .visit-header h2 {
-            color: #34d399;
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .visit-header p {
-            color: rgba(255, 255, 255, 0.4);
+        .redirect-notice p {
+            color: rgba(255, 255, 255, 0.5);
             font-size: 13px;
-            margin-top: 4px;
         }
 
-        .info-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 14px 0 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .redirect-notice .countdown {
+            color: #34d399;
+            font-weight: 700;
+            font-size: 20px;
         }
 
-        .info-card .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-        }
-
-        .info-card .row .label {
+        .redirect-notice .url-display {
             color: rgba(255, 255, 255, 0.25);
             font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-card .row .value {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 13px;
             font-family: 'Courier New', monospace;
+            margin-top: 4px;
             word-break: break-all;
-            text-align: right;
-            max-width: 70%;
-        }
-
-        .btn-visit {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #059669, #10b981);
-            color: #fff;
-            box-shadow: 0 8px 30px rgba(5, 150, 105, 0.25);
-        }
-
-        .btn-visit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(5, 150, 105, 0.4);
-        }
-
-        .btn-visit:active {
-            transform: scale(0.98);
-        }
-
-        /* Tombol Kembali */
-        .btn-back {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.04);
-            color: rgba(255, 255, 255, 0.3);
-            margin-top: 10px;
-        }
-
-        .btn-back:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.5);
         }
 
         /* ========== FOOTER ========== */
@@ -542,22 +434,6 @@
             .status-panel {
                 padding: 14px 16px;
             }
-            .tutorial-steps {
-                flex-direction: column;
-                gap: 8px;
-                align-items: center;
-            }
-            .step-arrow {
-                transform: rotate(90deg);
-            }
-            .step-item {
-                width: 100%;
-                justify-content: center;
-            }
-            .info-card .row .value {
-                max-width: 55%;
-                font-size: 11px;
-            }
         }
     </style>
 </head>
@@ -565,125 +441,69 @@
 
 <div class="verification-container">
 
-    <!-- ========================================== -->
-    <!-- PAGE 1: VERIFIKASI SISTEM                  -->
-    <!-- ========================================== -->
-    <div id="pageVerify">
-
-        <!-- HEADER -->
-        <div class="header">
-            <span class="shield-icon">🛡️</span>
-            <h1>Verifikasi Sistem</h1>
-            <p class="sub">Cine Umbu Store · Keamanan &amp; Integritas</p>
-            <div class="divider"></div>
-        </div>
-
-        <!-- TUTORIAL STEPS -->
-        <div class="tutorial-steps">
-            <div class="step-item active" id="step1">
-                <span class="step-number">1</span>
-                <span class="step-label">Verifikasi Sistem</span>
-            </div>
-            <span class="step-arrow">→</span>
-            <div class="step-item" id="step2">
-                <span class="step-number">2</span>
-                <span class="step-label">Visit Site</span>
-            </div>
-        </div>
-
-        <!-- STATUS PANEL -->
-        <div class="status-panel">
-            <div class="status-row">
-                <span class="label">Status</span>
-                <div class="value">
-                    <span class="status-dot idle" id="statusDot"></span>
-                    <span class="text" id="statusText">Menunggu verifikasi</span>
-                </div>
-            </div>
-            <div class="status-row" style="margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.03);">
-                <span class="label">Sistem</span>
-                <div class="value">
-                    <span class="text" style="color: rgba(255,255,255,0.3); font-size: 12px;" id="systemInfo">● online</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROGRESS -->
-        <div class="progress-section">
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progressFill"></div>
-            </div>
-            <div class="progress-labels">
-                <span id="progressLabel">Memulai verifikasi...</span>
-                <span class="percent" id="progressPercent">0%</span>
-            </div>
-        </div>
-
-        <!-- LOG -->
-        <div class="log-container" id="logContainer">
-            <div class="log-entry">
-                <span class="time">[--:--:--]</span>
-                <span class="msg">Klik tombol untuk memulai verifikasi sistem.</span>
-            </div>
-        </div>
-
-        <!-- TOMBOL VERIFIKASI -->
-        <button class="btn-verify" id="btnVerify">
-            🔍 Verifikasi Sistem
-        </button>
-
+    <!-- ========== HEADER ========== -->
+    <div class="header">
+        <span class="shield-icon">🛡️</span>
+        <h1>Verifikasi Sistem</h1>
+        <p class="sub">Cine Umbu Store · Keamanan &amp; Integritas</p>
+        <div class="divider"></div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- PAGE 2: VISIT SITE                        -->
-    <!-- ========================================== -->
-    <div id="pageVisit">
+    <!-- ========== STEP INDICATOR ========== -->
+    <div class="step-indicator">
+        <span class="step-badge" id="stepBadge">
+            ⏳ Menunggu Verifikasi
+        </span>
+    </div>
 
-        <div class="visit-header">
-            <span class="check-icon">✅</span>
-            <h2>Verifikasi Berhasil!</h2>
-            <p>Sistem telah terverifikasi dengan aman</p>
-        </div>
-
-        <!-- TUTORIAL STEPS (kedua) -->
-        <div class="tutorial-steps">
-            <div class="step-item done">
-                <span class="step-number">✓</span>
-                <span class="step-label">Verifikasi Sistem</span>
-            </div>
-            <span class="step-arrow">→</span>
-            <div class="step-item active">
-                <span class="step-number">2</span>
-                <span class="step-label">Visit Site</span>
+    <!-- ========== STATUS PANEL ========== -->
+    <div class="status-panel">
+        <div class="status-row">
+            <span class="label">Status</span>
+            <div class="value">
+                <span class="status-dot idle" id="statusDot"></span>
+                <span class="text" id="statusText">Menunggu verifikasi</span>
             </div>
         </div>
-
-        <!-- INFO CARD -->
-        <div class="info-card">
-            <div class="row">
-                <span class="label">📍 Tujuan</span>
-                <span class="value">Cine Umbu Store</span>
-            </div>
-            <div class="row" style="border-top: 1px solid rgba(255,255,255,0.04); padding-top: 6px; margin-top: 4px;">
-                <span class="label">🔗 URL</span>
-                <span class="value" id="visitUrlDisplay"> Sistem cine_umbu_store </span>
-            </div>
-            <div class="row" style="border-top: 1px solid rgba(255,255,255,0.04); padding-top: 6px; margin-top: 4px;">
-                <span class="label">🔒 Keamanan</span>
-                <span class="value" style="color: #34d399; font-family: inherit;">SSL Terverifikasi</span>
+        <div class="status-row" style="margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.03);">
+            <span class="label">Sistem</span>
+            <div class="value">
+                <span class="text" style="color: rgba(255,255,255,0.3); font-size: 12px;" id="systemInfo">● online</span>
             </div>
         </div>
+    </div>
 
-        <!-- TOMBOL VISIT SITE -->
-        <button class="btn-visit" id="btnVisitSite">
-            🌐 Visit Site
-        </button>
+    <!-- ========== PROGRESS ========== -->
+    <div class="progress-section">
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-labels">
+            <span id="progressLabel">Memulai verifikasi...</span>
+            <span class="percent" id="progressPercent">0%</span>
+        </div>
+    </div>
 
-        <!-- TOMBOL KEMBALI -->
-        <button class="btn-back" id="btnBack">
-            ↩️ Kembali ke Verifikasi
-        </button>
+    <!-- ========== LOG ========== -->
+    <div class="log-container" id="logContainer">
+        <div class="log-entry">
+            <span class="time">[--:--:--]</span>
+            <span class="msg">Klik tombol untuk memulai verifikasi sistem.</span>
+        </div>
+    </div>
 
+    <!-- ========== TOMBOL VERIFIKASI ========== -->
+    <button class="btn-verify" id="btnVerify">
+        🔍 Verifikasi Sistem
+    </button>
+
+    <!-- ========== REDIRECT NOTICE ========== -->
+    <div class="redirect-notice" id="redirectNotice">
+        <p>
+            ✅ Verifikasi berhasil! Mengarahkan ke <strong>Cine Umbu Store</strong> dalam 
+            <span class="countdown" id="countdownNum">3</span> detik...
+        </p>
+        <div class="url-display" id="targetUrlDisplay">application-agencies-colony-costume.trycloudflare.com/cine_umbu_store/</div>
     </div>
 
     <!-- ========== FOOTER ========== -->
@@ -699,9 +519,7 @@
 
     const TARGET_URL = 'https://application-agencies-colony-costume.trycloudflare.com/cine_umbu_store/';
 
-    // Elements Page 1
-    const pageVerify = document.getElementById('pageVerify');
-    const pageVisit = document.getElementById('pageVisit');
+    // Elements
     const btnVerify = document.getElementById('btnVerify');
     const statusDot = document.getElementById('statusDot');
     const statusText = document.getElementById('statusText');
@@ -710,18 +528,17 @@
     const progressLabel = document.getElementById('progressLabel');
     const progressPercent = document.getElementById('progressPercent');
     const logContainer = document.getElementById('logContainer');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-
-    // Elements Page 2
-    const btnVisitSite = document.getElementById('btnVisitSite');
-    const btnBack = document.getElementById('btnBack');
-    const visitUrlDisplay = document.getElementById('visitUrlDisplay');
+    const stepBadge = document.getElementById('stepBadge');
+    const redirectNotice = document.getElementById('redirectNotice');
+    const countdownNum = document.getElementById('countdownNum');
+    const targetUrlDisplay = document.getElementById('targetUrlDisplay');
 
     let isVerifying = false;
     let isVerified = false;
+    let redirectTimer = null;
+    let countdownInterval = null;
 
-    visitUrlDisplay.textContent = TARGET_URL.replace('https://', '');
+    targetUrlDisplay.textContent = TARGET_URL.replace('https://', '');
 
     // ==========================================
     // FUNGSI LOG
@@ -754,17 +571,41 @@
         if (label) progressLabel.textContent = label;
     }
 
+    function updateStepBadge(text, type = '') {
+        stepBadge.textContent = text;
+        stepBadge.className = 'step-badge' + (type ? ' ' + type : '');
+    }
+
     // ==========================================
-    // PINDAH KE HALAMAN VISIT
+    // FUNGSI REDIRECT WITH COUNTDOWN
     // ==========================================
-    function goToVisitPage() {
-        isVerified = true;
-        pageVerify.style.display = 'none';
-        pageVisit.style.display = 'block';
-        // Update steps
-        step1.className = 'step-item done';
-        step1.querySelector('.step-number').textContent = '✓';
-        step2.className = 'step-item active';
+    function startRedirect() {
+        let count = 3;
+        countdownNum.textContent = count;
+        redirectNotice.classList.add('show');
+
+        countdownInterval = setInterval(function() {
+            count--;
+            if (count <= 0) {
+                clearInterval(countdownInterval);
+                clearInterval(redirectTimer);
+                countdownNum.textContent = '0';
+                addLog('🌐 Mengarahkan ke Cine Umbu Store...', 'success');
+                
+                // REDIRECT
+                setTimeout(function() {
+                    window.location.href = TARGET_URL;
+                }, 300);
+                return;
+            }
+            countdownNum.textContent = count;
+        }, 1000);
+
+        // Fallback: redirect maksimal 5 detik
+        redirectTimer = setTimeout(function() {
+            clearInterval(countdownInterval);
+            window.location.href = TARGET_URL;
+        }, 5000);
     }
 
     // ==========================================
@@ -780,6 +621,7 @@
         setStatus('checking', 'Sedang memverifikasi...', 'active');
         systemInfo.textContent = '● memeriksa';
         updateProgress(0, 'Memulai verifikasi...');
+        updateStepBadge('🔄 Sedang Verifikasi...');
         addLog('🔍 Memulai proses verifikasi sistem...', 'info');
 
         const steps = [
@@ -795,25 +637,25 @@
 
         function processStep() {
             if (stepIndex >= steps.length) {
-                // SELESAI
+                // SELESAI — LANGSUNG REDIRECT
+                isVerified = true;
                 isVerifying = false;
 
                 setStatus('verified', 'Sistem Terverifikasi ✅', 'success');
                 systemInfo.textContent = '● online · aman';
                 updateProgress(100, 'Verifikasi selesai!');
                 progressFill.className = 'progress-bar-fill complete';
+                updateStepBadge('✅ Verifikasi Selesai', 'done');
 
                 btnVerify.innerHTML = '✅ Verifikasi Selesai';
                 btnVerify.className = 'btn-verify verified';
-                btnVerify.disabled = false;
+                btnVerify.disabled = true;
 
                 addLog('✅ Verifikasi berhasil! Sistem aman.', 'success');
+                addLog('🌐 Mengarahkan ke Cine Umbu Store...', 'success');
 
-                // PINDAH KE HALAMAN VISIT
-                setTimeout(function() {
-                    goToVisitPage();
-                    addLog('🌐 Silakan klik "Visit Site" untuk melanjutkan.', 'success');
-                }, 1000);
+                // MULAI REDIRECT OTOMATIS
+                startRedirect();
 
                 return;
             }
@@ -835,48 +677,11 @@
     btnVerify.addEventListener('click', runVerification);
 
     // ==========================================
-    // EVENT: TOMBOL VISIT SITE
-    // ==========================================
-    btnVisitSite.addEventListener('click', function() {
-        addLog('🌐 Mengarahkan ke Cine Umbu Store...', 'success');
-        try {
-            const newWindow = window.open(TARGET_URL, '_blank');
-            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                window.location.href = TARGET_URL;
-            }
-        } catch (e) {
-            window.location.href = TARGET_URL;
-        }
-    });
-
-    // ==========================================
-    // EVENT: TOMBOL KEMBALI
-    // ==========================================
-    btnBack.addEventListener('click', function() {
-        pageVisit.style.display = 'none';
-        pageVerify.style.display = 'block';
-        // Reset steps
-        step1.className = 'step-item active';
-        step1.querySelector('.step-number').textContent = '1';
-        step2.className = 'step-item';
-        // Reset tombol
-        btnVerify.innerHTML = '🔍 Verifikasi Sistem';
-        btnVerify.className = 'btn-verify';
-        btnVerify.disabled = false;
-        isVerified = false;
-        addLog('↩️ Kembali ke halaman verifikasi.', 'info');
-    });
-
-    // ==========================================
-    // SHORTCUT: Enter
+    // SHORTCUT: Enter untuk verifikasi
     // ==========================================
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            if (pageVerify.style.display !== 'none' && !isVerifying && !isVerified) {
-                btnVerify.click();
-            } else if (pageVisit.style.display !== 'none') {
-                btnVisitSite.click();
-            }
+        if (e.key === 'Enter' && !isVerifying && !isVerified) {
+            btnVerify.click();
         }
     });
 
